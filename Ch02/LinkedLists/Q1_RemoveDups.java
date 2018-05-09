@@ -55,6 +55,10 @@ class LinkedList {
 
     public void add(int key) {
         Node node = new Node(key);
+       addN(node);
+    }
+
+    public void addN(Node node) {
         node.next = head;
         head = node;
     }
