@@ -1,6 +1,5 @@
 package Ch03.StacksAndQueues;
 
-import sun.invoke.empty.Empty;
 
 import java.util.EmptyStackException;
 
