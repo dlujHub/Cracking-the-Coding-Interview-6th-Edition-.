@@ -63,6 +63,18 @@ class LinkedList {
         head = node;
     }
 
+    public void addEnd(int key){
+        Node node = new Node(key);
+        if (head == null) {
+            addN(node);
+            return;
+        }
+        Node curr = head;
+        while (curr.next != null){
+            curr = curr.next;
+        }
+        curr.next = node;
+    }
     public void display() {
         Node curr = head;
         while (curr!=null) {

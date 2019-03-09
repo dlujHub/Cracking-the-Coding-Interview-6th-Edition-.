@@ -30,11 +30,14 @@ public class Q7_IntersectionCalcLength {
         list2.display();
         System.out.println(intersect(list, list2));
 
-        list = new LinkedList();
-        list.add(1);
+        list = new LinkedList();  Node nodee = new Node(5);
+        list.addN(nodee);
 
         list2 = new LinkedList();
-        list2.add(5);list2.add(2);
+        list2.addN(nodee);list2.add(2);
+        System.out.println("second");
+        list.display();
+        list2.display();
         System.out.println(intersect(list, list2));
 
     }
@@ -43,25 +46,54 @@ public class Q7_IntersectionCalcLength {
         if (listB == null || listA == null) {
             return null;
         }
-        // length of lists
-        int sizeA = 0;
-        int sizeB = 0;
-        Node curr = listA.head;
-        while (curr != null){
-            sizeA++;
-            curr = curr.next;
+        Result resultA = lengthAndTail(listA);
+        Result resultB = lengthAndTail(listB);
+
+       Node currLong = (resultA.length > resultB.length) ? listA.head : listB.head;
+        Node currShort = (resultA.length < resultB.length) ? listA.head : listB.head;
+
+        if (resultA.tail != resultB.tail){
+            return null;
         }
-        curr = listB.head;
-        while (curr != null){
-            sizeB++;
-            curr = curr.next;
+        Node kth = findKth(currLong, Math.abs(resultA.length - resultB.length));
+
+        while (currShort != kth){
+            currShort = currShort.next;
+            kth = kth.next;
         }
 
-       Node currLong = (sizeA > sizeB) ? listA.head : listB.head;
-        Node currShort = (sizeA < sizeB) ? listA.head : listB.head;
-        System.out.println(currLong + " " + currShort);
+        return currShort;
+    }
 
+    private static Node findKth(Node currLong, int k) {
+        Node curr = currLong;
+        for (int i = 0; i<k; i++){
+            curr = curr.next;
+        }
         return curr;
+    }
+
+    private static Result lengthAndTail(LinkedList list){
+
+        int length = 0;
+        Node tail = list.head;
+        Node curr = tail;
+        while (curr != null){
+            tail = curr;
+            curr = curr.next;
+            length++;
+        }
+        return new Result(tail, length);
+    }
+
+   static class Result {
+        Node tail;
+        int length;
+
+        Result(Node tail, int length){
+            this.tail = tail;
+            this.length = length;
+        }
     }
 
 }

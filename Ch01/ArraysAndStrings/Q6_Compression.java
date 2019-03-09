@@ -1,4 +1,4 @@
-package Ch01.ArraysAndStrings.Q1_06_String_Compression;
+package Ch01.ArraysAndStrings;
 
 /**
  * String Compression: Implement a method to perform basic string compression using the counts
@@ -7,7 +7,7 @@ package Ch01.ArraysAndStrings.Q1_06_String_Compression;
  the original string. You can assume the string has only uppercase and lowercase letters (a - z).
 
  */
-public class Compression {
+public class Q6_Compression {
 
     private static String compress(String word){
         StringBuilder sb = new StringBuilder();
